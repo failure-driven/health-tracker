@@ -28,6 +28,17 @@ gem "jbuilder", "~> 2.7"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 
+# User management
+gem "devise"
+# gem 'omniauth-facebook'
+# gem 'omniauth-twitter'
+# gem 'omniauth-github'
+# gem 'omniauth-linkedin'
+
+# administration
+# gem "administrate"
+# gem "administrate-field-jsonb"
+
 # Adding for consistent Ruby styling
 gem "rubocop"
 gem "rubocop-rails"
