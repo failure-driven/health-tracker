@@ -18,10 +18,6 @@ This project is for tracking fitness goals
 
 You can clone the project using
 
-`gh repo clone failure-driven/health-tracker`
-
-or
-
 `git clone https://github.com/failure-driven/health-tracker.git .`
 
 ## System Requirements
@@ -51,10 +47,6 @@ Build project
 Migrate database
 
 `rails db:migrate`
-
-Seed database (seed file not updated yet)
-
-`rails db:seed`
 
 ## Run file in the browser (development)
 
