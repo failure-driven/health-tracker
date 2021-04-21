@@ -52,6 +52,10 @@ Migrate database
 
 `rails db:migrate`
 
+Seed database (seed file not updated yet)
+
+`rails db:seed`
+
 ## Run file in the browser (development)
 
 Start rails server
