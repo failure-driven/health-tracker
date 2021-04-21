@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>HealthTracker</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<%= csrf_meta_tags %>
-		<%= csp_meta_tag %>
-		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_pack_tag 'application' %>
-	</head>
+  <head>
+    <title>HealthTracker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
 
-	<body>
-		<%= render  "shared/flash_message" %>
-		<%= yield %>
-	</body>
+  <body>
+    <%= render  "shared/flash_message" %>
+    <%= yield %>
+  </body>
 </html>
