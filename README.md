@@ -1,4 +1,14 @@
-# Fitness Tracker
+<h1 align="center">Health Tracker</h1>
+
+<div align="center">
+
+[![CircleCI](https://circleci.com/gh/failure-driven/health-tracker.svg?style=svg)](https://circleci.com/gh/failure-driven/health-tracker)
+
+</div>
+
+Health Tracker - track all the health
+
+# README
 
 This project is for tracking fitness goals
 
@@ -41,10 +51,6 @@ Build project
 Migrate database
 
 `rails db:migrate`
-
-Seed database (seed file not updated yet)
-
-`rails db:seed`
 
 ## Run file in the browser (development)
 
