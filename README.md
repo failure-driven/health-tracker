@@ -1,24 +1,55 @@
-# README
+# Fitness Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is for tracking fitness goals
 
-Things you may want to cover:
+# Installation
 
-* Ruby version
+## Clone project
 
-* System dependencies
+You can clone the project using
 
-* Configuration
+`gh repo clone failure-driven/health-tracker`
 
-* Database creation
+or 
 
-* Database initialization
+`git clone https://github.com/failure-driven/health-tracker.git .`
 
-* How to run the test suite
+## System Requirements
 
-* Services (job queues, cache servers, search engines, etc.)
+* Ruby version **ruby-3.0.0**
 
-* Deployment instructions
+& Database **postgresql**
 
-* ...
+## Install Project Dependencies
+
+Rails dependencies 
+
+`bundle install`
+
+JavaScript dependencies
+
+`yarn install`
+
+Initialise Database
+
+`rails db:create`
+
+Build project
+
+`make build`
+
+Migrate database
+
+`rails db:migrate`
+
+Seed database (seed file not updated yet)
+
+`rails db:seed`
+
+## Run file in the browser (development)
+
+Start rails server
+
+`rails s`
+
+(localhost)[http://127.0.0.1:3000]
