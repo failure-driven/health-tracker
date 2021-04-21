@@ -55,7 +55,7 @@ group :test do
   gem "rspec-wait"
 
   gem "capybara", ">= 3.14"
-  gem "capybara-screenshot"
+  gem "capybara-inline-screenshot"
   gem "selenium-webdriver"
   gem "webdrivers", "~> 3.0"
 

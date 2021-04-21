@@ -83,6 +83,8 @@ GEM
     capybara-email (3.0.2)
       capybara (>= 2.4, < 4.0)
       mail
+    capybara-inline-screenshot (2.2.1)
+      capybara-screenshot
     capybara-screenshot (1.0.25)
       capybara (>= 1.0, < 4)
       launchy
@@ -313,7 +315,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.14)
   capybara-email
-  capybara-screenshot
+  capybara-inline-screenshot
   database_cleaner
   devise
   factory_bot_rails
