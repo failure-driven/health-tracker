@@ -28,7 +28,7 @@ You can clone the project using
 
 ## Install Project Dependencies
 
-Rails dependencies
+Rails dependencies 
 
 `bundle install`
 
