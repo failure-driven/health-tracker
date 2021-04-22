@@ -1,5 +1,15 @@
-import React from 'react';
+import React from "react";
+import { ApolloProvider } from "@apollo/client";
+import ApolloClient from "../../api/ApolloClient";
+import ApiDemo from "./ApiDemo";
 
-const App = () => <div>React App - test</div>;
+const App = () => (
+  <ApolloProvider client={ApolloClient}>
+    <div>
+      React App - test
+      <ApiDemo />
+    </div>
+  </ApolloProvider>
+);
 
 export default App;
