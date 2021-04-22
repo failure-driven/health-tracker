@@ -39,6 +39,10 @@ gem "devise"
 # gem "administrate"
 # gem "administrate-field-jsonb"
 
+# API
+gem "graphiql-rails", group: :development
+gem "graphql"
+
 # Adding for consistent Ruby styling
 gem "rubocop"
 gem "rubocop-rails"
