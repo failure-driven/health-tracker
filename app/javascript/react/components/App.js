@@ -6,8 +6,8 @@ import ApiDemo from './ApiDemo/ApiDemo';
 
 const App = () => (
   <ApolloProvider client={ApolloClient}>
-    <LayoutComponent />
-    <ApiDemo />
-  </ApolloProvider>
+  <LayoutComponent />
+  <ApiDemo />
+	</ApolloProvider>
 );
 export default App;
