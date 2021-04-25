@@ -17,12 +17,11 @@ ActiveRecord::Schema.define(version: 2021_04_25_014657) do
   enable_extension "plpgsql"
 
   create_table "daily_stats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.date "date", null: false
+    t.date "date"
     t.jsonb "data"
     t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "date"], name: "index_daily_stats_on_user_id_and_date", unique: true
     t.index ["user_id"], name: "index_daily_stats_on_user_id"
   end
 

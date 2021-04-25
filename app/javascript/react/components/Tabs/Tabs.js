@@ -1,7 +1,5 @@
 import React from 'react';
 
-const Tabs = () => {
-  return <div className='container'></div>;
-};
+const Tabs = () => <div className="container" />;
 
 export default Tabs;
