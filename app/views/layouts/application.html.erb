@@ -14,7 +14,8 @@
     <%= render partial: "layouts/navbar" %>
     <main class="container-fluid">
       <%= render  "shared/flash_message" %>
-      <%= yield %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>

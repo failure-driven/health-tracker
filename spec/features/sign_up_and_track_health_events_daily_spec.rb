@@ -18,7 +18,7 @@ feature "Sign up and track health events daily", js: true do
 
     Then "she sees a notification that she needs to sign up before continuing" do
       wait_for do
-        page.find("p.alert").text
+        page.find("p.alert [data-testid=\"message\"]").text
       end.to eq "You need to sign in or sign up before continuing."
     end
 
@@ -30,7 +30,7 @@ feature "Sign up and track health events daily", js: true do
 
     Then "she sees a notification that she needs to confirm her email before continuing" do
       wait_for do
-        page.find("p.alert").text
+        page.find("p.alert [data-testid=\"message\"]").text
       end.to eq "You have to confirm your email address before continuing."
     end
 
@@ -45,7 +45,7 @@ feature "Sign up and track health events daily", js: true do
 
     Then "she sees a notification that she has successfully confirmed her email" do
       wait_for do
-        page.find("p.notice").text
+        page.find("p.alert-notice [data-testid=\"message\"]").text
       end.to eq "Your email address has been successfully confirmed."
     end
 
@@ -57,7 +57,7 @@ feature "Sign up and track health events daily", js: true do
 
     Then "she sees a notification that she has signed in successfully" do
       wait_for do
-        page.find("p.notice").text
+        page.find("p.alert-notice [data-testid=\"message\"]").text
       end.to eq "Signed in successfully."
     end
 

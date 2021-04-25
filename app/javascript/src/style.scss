@@ -1,1 +1,39 @@
 @import "~bootstrap/scss/bootstrap";
+
+.alert {
+  &.alert-alert {
+    @extend .alert-warning;
+  }
+  &.alert-notice {
+    @extend .alert-success;
+  }
+}
+
+.devise-form {
+  form {
+    margin-bottom: 1.25em;
+  }
+  .field {
+    @extend .form-group;
+  }
+  input {
+    &[type="email"], &[type="password"] {
+      @extend .form-control;
+    }
+    &[type="checkbox"] {
+      // @extend .form-check-input;
+    }
+    &[type="submit"] {
+      @extend .btn;
+      @extend .btn-primary;
+    }
+  }
+}
+
+#error_explanation {
+  @extend .invalid-feedback;
+  display: inherit;
+  @extend .alert;
+  @extend .alert-danger;
+}
+
