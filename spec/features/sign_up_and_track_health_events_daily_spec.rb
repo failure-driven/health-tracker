@@ -4,7 +4,9 @@ feature "Sign up and track health events daily", js: true do
   scenario "sign up and track health events" do
     When "Whitney Wolve of bumble visits health-tracker and signs up" do
       visit root_path
-      page.click_on("Sign up")
+      page.within("main") do
+        page.click_on("Sign up")
+      end
     end
 
     And "she registers" do
