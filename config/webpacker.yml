@@ -10,6 +10,7 @@ default: &default
 
   alias:
     'api': 'app/javascript/api'
+    # 'pages': 'app/javascript/react/pages'
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
