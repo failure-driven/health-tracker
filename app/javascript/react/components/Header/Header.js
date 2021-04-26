@@ -64,7 +64,9 @@ const Header = () => {
                   Another action
                 </a>
                 <div className="dropdown-divider"></div>
-                <Link className="dropdown-item">Sign out</Link>
+                <Link to="sign-out" className="dropdown-item">
+                  Sign out
+                </Link>
               </div>
             </li>
             <li className="nav-item"></li>
