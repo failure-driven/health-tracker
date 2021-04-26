@@ -66,9 +66,10 @@ feature "Sign up and track health events daily", js: true do
       page.click_on("add stats for today")
     end
 
-    Then "she sees today is 20th April 2021 and she can add stats"
-    # need to lock time
-    # add a stat
+    Then "she sees today is 20th April 2021 and she can add stats" do
+      # need to lock time
+      # add a stat
+    end
 
     When "Whitney adds her weight and push up count"
     # click add
