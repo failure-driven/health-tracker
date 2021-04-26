@@ -9,7 +9,7 @@ default: &default
   webpack_compile_output: true
 
   alias:
-    api: 'app/javascript/api'
+    'api': 'app/javascript/api'
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
