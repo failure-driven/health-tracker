@@ -1,12 +1,17 @@
-import React, { Fragment } from 'react';
-import Header from '../Header/Header';
-import Tabs from '../Tabs/Tabs';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Header from "../Header/Header";
+import Home from "../../pages/Home/Home";
 
-const LayoutComponent = () => (
-	<Fragment>
-		<Header />
-		<Tabs />
-  </Fragment>
-);
+const LayoutComponent = () => {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 export default LayoutComponent;
