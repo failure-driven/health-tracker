@@ -24,12 +24,12 @@ const Header = () => {
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarSupportedContent"
+          data-target="/navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" />
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -44,7 +44,7 @@ const Header = () => {
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
-                href="#"
+                href="/"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -57,19 +57,19 @@ const Header = () => {
                 className="dropdown-menu pb-0"
                 aria-labelledby="navbarDropdown"
               >
-                <a className="dropdown-item disabled" href="#">
+                <a className="dropdown-item disabled" href="/">
                   Action
                 </a>
-                <a className="dropdown-item disabled" href="#">
+                <a className="dropdown-item disabled" href="/">
                   Another action
                 </a>
-                <div className="dropdown-divider"></div>
+                <div className="dropdown-divider" />
                 <Link to="sign-out" className="dropdown-item">
                   Sign out
                 </Link>
               </div>
             </li>
-            <li className="nav-item"></li>
+            <li className="nav-item" />
           </ul>
         </div>
       </div>

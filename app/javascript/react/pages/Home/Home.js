@@ -25,48 +25,49 @@ const Home = () => {
     }
   };
   return (
-    <div className='container'>
-      <h1 className='my-4'>Are you sweating enough?</h1>
-      <button className='btn btn-success'>add stats for today</button>
-      <div className='my-4'>
+    <div className="container">
+      <h1 className="my-4">Are you sweating enough?</h1>
+      <button type="button" className="btn btn-success">
+        add stats for today
+      </button>
+      <div className="my-4">
         <SingleDatePicker
           date={date}
-          onDateChange={(date) => setDate(date)}
+          onDateChange={(newDate) => setDate(newDate)}
           focused={focus}
           onFocusChange={({ focused }) => setFocus(focused)}
-          id='date'
+          id="date"
         />
       </div>
-      <form className='my-4' onSubmit={addInputElementHandler}>
-        <div className='row'>
-          <div className='col'>
+      <form className="my-4" onSubmit={addInputElementHandler}>
+        <div className="row">
+          <div className="col">
             <input
-              type='text'
-              name='question'
+              type="text"
+              name="question"
               value={nameInput}
-              className='form-control'
-              placeholder='What did you do?'
+              className="form-control"
+              placeholder="What did you do?"
               onChange={inputChangeHandler}
             />
           </div>
-          <div className='col'>
+          <div className="col">
             <input
-              type='text'
-              name='answer'
+              type="text"
+              name="answer"
               value={valueInput}
-              className='form-control'
-              placeholder='How much?'
+              className="form-control"
+              placeholder="How much?"
               onChange={inputChangeHandler}
             />
           </div>
         </div>
-        <div className='row my-4'>
-          <div className='col-6'>
+        <div className="row my-4">
+          <div className="col-6">
             <input
-              type='submit'
-              className='form-control'
-              value='Add this to my list'
-              className='btn btn-info'
+              type="submit"
+              className="form-control btn btn-info"
+              value="Add this to my list"
             />
           </div>
         </div>
