@@ -36,8 +36,8 @@ gem "devise"
 # gem 'omniauth-linkedin'
 
 # administration
-# gem "administrate"
-# gem "administrate-field-jsonb"
+gem "administrate"
+gem "administrate-field-jsonb"
 
 # API
 gem "graphiql-rails", group: :development

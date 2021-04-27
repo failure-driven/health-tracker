@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :daily_stats
+
+    root to: "users#index"
+  end
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql" if Rails.env.development?
   post "/graphql", to: "graphql#execute"
   devise_for :users

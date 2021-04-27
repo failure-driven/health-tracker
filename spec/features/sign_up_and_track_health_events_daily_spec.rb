@@ -97,4 +97,151 @@ feature "Sign up and track health events daily", js: true do
     When "she also uploads a photo"
     Then "she is informed the photo will be used to train an AI to work out how healthy she is looking"
   end
+
+  context "2 users exist and they use the admin interface to enter data" do
+    before do
+      @user_claudia = User.create!(
+        email: "claudia.king@automio.com",
+        password: "1password",
+      )
+      @user_claudia.confirm
+      @user_claudia.daily_stats.create!(
+        date: Date.parse("2015-04-01"),
+        data: { notes: "founded a company",
+                situps: 100, },
+      )
+      @user_claudia.daily_stats.create!(
+        date: Date.parse("2015-04-02"),
+        data: {
+          notes: "day 2 of company",
+          situps: 120,
+        },
+      )
+      @user_ilana = User.create!(
+        email: "ilana.feain@nano-x.com",
+        password: "1password",
+      )
+      @user_ilana.confirm
+    end
+
+    scenario "users can only see themselves and edit their daily stats in the admin interface" do
+      When "Claudia logs in and views admin" do
+        visit root_path
+        page.find("form.new_user").fill_in("Email", with: "claudia.king@automio.com")
+        page.find("form.new_user").fill_in("Password", with: "1password")
+        page.find("form.new_user").find('input[type="submit"]').click
+        page.find("nav a", text: "admin").click
+      end
+
+      Then "she can only view herself as a user" do
+        # TODO: move to page fragment
+        headers = page.find_all("table thead tr th").map(&:text)
+        fields_per_row = page
+                         .find_all("table tbody tr")
+                         .map do |row|
+          headers.zip(row.find_all("td").map(&:text)).to_h
+        end
+        expect(
+          fields_per_row.map { |row| row["Email"] },
+        ).to eq(["claudia.king@automio.com"])
+      end
+
+      And "she can see her daily stats" do
+        page.find(".navigation a", text: "Daily Stats").click
+        # TODO: move to page fragment
+        headers = page.find_all("table thead tr th").map(&:text)
+        fields_per_row = page
+                         .find_all("table tbody tr")
+                         .map do |row|
+          headers.zip(row.find_all("td").map(&:text)).to_h
+        end
+        expect(
+          fields_per_row.map { |row| row["Date"] },
+        ).to eq(%w[2015-04-01 2015-04-02])
+      end
+
+      When "she changes her daily stats for 2nd of April" do
+        page
+          .find_all("table tbody tr")
+          .find { |row| row.text =~ /2015-04-02/ }
+          .click
+        page.find("header a", text: "Edit DailyStat").click
+        # TODO: would not really change the date but more the json data
+        page.find("form").fill_in("Date", with: "2015-04-10")
+        page
+          .find_all("form .field-unit")
+          .find { |field| !field.find_all("label", text: "Date", wait: false).empty? }
+          .find("input")
+          .send_keys(:return)
+        page.click_on("Update Daily stat")
+      end
+
+      Then "they change" do
+        # TODO: simplify in page fragment
+        keys = page
+               .find("section.main-content__body")
+               .find_all("dt")
+               .map(&:text)
+        values = page
+                 .find("section.main-content__body")
+                 .find_all("dd")
+                 .map(&:text)
+        wait_for do
+          keys.zip(values).to_h
+        end.to match(hash_including(
+                       "USER" => "User #claudia.king@automio.com",
+                       "DATE" => "2015-04-10",
+                       "DATA" => "object\n{2}\nnotes\n:\nday 2 of company\nsitups\n:\n120",
+                     ))
+      end
+
+      When "she navigates back to the app and logs out" do
+        page.find(".navigation a", text: "Back to app").click
+        page.find("nav a", text: "Sign out").click
+      end
+
+      Then "she is no longer logged in" do
+        wait_for do
+          page.find("p.alert [data-testid=\"message\"]").text
+        end.to eq("You need to sign in or sign up before continuing.")
+      end
+
+      When "Ilana logs in and visits admin" do
+        page.find("form.new_user").fill_in("Email", with: "ilana.feain@nano-x.com")
+        page.find("form.new_user").fill_in("Password", with: "1password")
+        page.find("form.new_user").find('input[type="submit"]').click
+        page.find("nav a", text: "admin").click
+      end
+
+      Then "she can only view herself as a user" do
+        # TODO: move to page fragment
+        headers = page.find_all("table thead tr th").map(&:text)
+        fields_per_row = page
+                         .find_all("table tbody tr")
+                         .map do |row|
+          headers.zip(row.find_all("td").map(&:text)).to_h
+        end
+        expect(
+          fields_per_row.map { |row| row["Email"] },
+        ).to eq(["ilana.feain@nano-x.com"])
+      end
+
+      And "she has no daily stats" do
+        page.find(".navigation a", text: "Daily Stats").click
+        # TODO: move to page fragment
+        headers = page.find_all("table thead tr th").map(&:text)
+        fields_per_row = page
+                         .find_all("table tbody tr")
+                         .map do |row|
+          headers.zip(row.find_all("td").map(&:text)).to_h
+        end
+        expect(
+          fields_per_row.map { |row| row["Date"] },
+        ).to be_empty
+      end
+
+      When "she adds daily stats"
+      Then "she sees they have been created"
+    end
+  end
 end
