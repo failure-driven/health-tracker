@@ -25,7 +25,7 @@ const Home = () => {
     }
   };
   return (
-    <div className="container">
+    <div>
       <h1 className="my-4">Are you sweating enough?</h1>
       <button type="button" className="btn btn-success">
         add stats for today
