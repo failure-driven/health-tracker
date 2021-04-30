@@ -8,13 +8,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'index' %>
   </head>
 
   <body>
+    <%= render partial: "layouts/navbar" %>
     <main class="container-fluid">
       <%= render  "shared/flash_message" %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>
