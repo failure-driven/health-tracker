@@ -37,6 +37,11 @@ const Charts = () => {
             xAxis: { type: "datetime" },
             yAxis: { min: 0 },
             series: [{ data: valuesFor(key) }],
+            plotOptions: {
+              series: {
+                connectNulls: true,
+              },
+            },
           }}
         />
       ))}
