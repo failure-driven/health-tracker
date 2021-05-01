@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { SingleDatePicker } from 'react-dates';
-import moment from 'moment';
+import React, { useState } from "react";
+import { SingleDatePicker } from "react-dates";
+import moment from "moment";
 
 const Home = () => {
-  const [nameInput, setNameInput] = useState('');
-  const [valueInput, setValueInput] = useState('');
+  const [nameInput, setNameInput] = useState("");
+  const [valueInput, setValueInput] = useState("");
   const [date, setDate] = useState(moment());
   const [focus, setFocus] = useState(false);
 
   const inputChangeHandler = (e) => {
-    if (e.target.name === 'question') {
+    if (e.target.name === "question") {
       setNameInput(e.target.value);
-    } else if (e.target.name === 'answer') {
+    } else if (e.target.name === "answer") {
       setValueInput(e.target.value);
     }
   };
@@ -20,8 +20,8 @@ const Home = () => {
     e.preventDefault();
     if (nameInput || valueInput) {
       // send item through graphql query
-      setNameInput('');
-      setValueInput('');
+      setNameInput("");
+      setValueInput("");
     }
   };
   return (

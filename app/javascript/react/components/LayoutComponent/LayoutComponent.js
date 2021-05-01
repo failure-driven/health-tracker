@@ -6,8 +6,7 @@ import Charts from "../../pages/Charts/Charts";
 import Nav from "../Nav/Nav";
 import style from "./layout.module.scss";
 
-const LayoutComponent = () => {
-  return (
+const LayoutComponent = () => (
   <BrowserRouter className="akash">
     <div className={style.container}>
       <Nav />
@@ -18,6 +17,6 @@ const LayoutComponent = () => {
       </Routes>
     </div>
   </BrowserRouter>
-)};
+);
 
 export default LayoutComponent;

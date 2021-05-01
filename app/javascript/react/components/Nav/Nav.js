@@ -1,26 +1,30 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Nav = () => {
-  return (
-    <ul class="nav nav-tabs my-3">
-      <li class="nav-item">
-        <NavLink className="nav-link" activeClassName="active" to="app">Add</NavLink>
-      </li>
-      <li class="nav-item">
-        <NavLink className="nav-link" activeClassName="active" to="app/stats">Stats</NavLink>
-      </li>
-      <li class="nav-item">
-        <NavLink className="nav-link" activeClassName="active" to="app/charts">Charts</NavLink>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Challenge</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Ranking</a>
-      </li>
-    </ul>
-  );
-};
+const Nav = () => (
+  <ul className="nav nav-tabs my-3">
+    <li className="nav-item">
+      <NavLink className="nav-link" activeClassName="active" to="app">
+        Add
+      </NavLink>
+    </li>
+    <li className="nav-item">
+      <NavLink className="nav-link" activeClassName="active" to="app/stats">
+        Stats
+      </NavLink>
+    </li>
+    <li className="nav-item">
+      <NavLink className="nav-link" activeClassName="active" to="app/charts">
+        Charts
+      </NavLink>
+    </li>
+    <li className="nav-item">
+      <span className="nav-link disabled">Challenge</span>
+    </li>
+    <li className="nav-item">
+      <span className="nav-link disabled">Ranking</span>
+    </li>
+  </ul>
+);
 
 export default Nav;

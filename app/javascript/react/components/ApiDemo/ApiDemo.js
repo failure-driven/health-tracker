@@ -1,6 +1,6 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
 
 const DAILY_STATS_ALL_QUERY = gql`
   {
