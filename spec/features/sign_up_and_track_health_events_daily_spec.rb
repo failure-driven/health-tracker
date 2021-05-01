@@ -4,9 +4,7 @@ feature "Sign up and track health events daily", js: true do
   scenario "sign up and track health events" do
     When "Whitney Wolve of bumble visits health-tracker and signs up" do
       visit root_path
-      page.within("main") do
-        page.click_on("Sign up")
-      end
+      page.find("nav a", text: "Sign up").click
     end
 
     And "she registers" do
@@ -19,10 +17,12 @@ feature "Sign up and track health events daily", js: true do
     Then "she sees a notification that she needs to sign up before continuing" do
       wait_for do
         page.find("p.alert [data-testid=\"message\"]").text
-      end.to eq "You need to sign in or sign up before continuing."
+      end.to eq "A message with a confirmation link has been sent to your email address. " \
+        "Please follow the link to activate your account."
     end
 
     When "Whitney attempts to signs in" do
+      page.find("nav a", text: "Log in").click
       page.find("form.new_user").fill_in("Email", with: "whitney.wolfe@bumble.com")
       page.find("form.new_user").fill_in("Password", with: "1password")
       page.find("form.new_user").find('input[type="submit"]').click
@@ -127,6 +127,7 @@ feature "Sign up and track health events daily", js: true do
     scenario "users can only see themselves and edit their daily stats in the admin interface" do
       When "Claudia logs in and views admin" do
         visit root_path
+        page.find("nav a", text: "Log in").click
         page.find("form.new_user").fill_in("Email", with: "claudia.king@automio.com")
         page.find("form.new_user").fill_in("Password", with: "1password")
         page.find("form.new_user").find('input[type="submit"]').click
@@ -203,10 +204,11 @@ feature "Sign up and track health events daily", js: true do
       Then "she is no longer logged in" do
         wait_for do
           page.find("p.alert [data-testid=\"message\"]").text
-        end.to eq("You need to sign in or sign up before continuing.")
+        end.to eq("Signed out successfully.")
       end
 
       When "Ilana logs in and visits admin" do
+        page.find("nav a", text: "Log in").click
         page.find("form.new_user").fill_in("Email", with: "ilana.feain@nano-x.com")
         page.find("form.new_user").fill_in("Password", with: "1password")
         page.find("form.new_user").find('input[type="submit"]').click
