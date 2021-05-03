@@ -15,7 +15,7 @@ module Types
     end
 
     def daily_stat_by_id(id:)
-      DailyStat.find(id)
+      DailyStat.find(id: id, user_id: context[:current_user].id)
     end
 
     field :daily_stats, [DailyStatType], null: true do
@@ -24,7 +24,6 @@ module Types
 
     def daily_stats
       current_user = context[:current_user]
-      p current_user
       current_user.daily_stats
     end
   end
