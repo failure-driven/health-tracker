@@ -4,17 +4,17 @@ import { NavLink } from "react-router-dom";
 const Nav = () => (
   <ul className="nav nav-tabs my-3">
     <li className="nav-item">
-      <NavLink className="nav-link" activeClassName="active" to="/app">
+      <NavLink className="nav-link" activeClassName="active" to="app">
         Add
       </NavLink>
     </li>
     <li className="nav-item">
-      <NavLink className="nav-link" activeClassName="active" to="/app/stats">
+      <NavLink className="nav-link" activeClassName="active" to="app/stats">
         Stats
       </NavLink>
     </li>
     <li className="nav-item">
-      <NavLink className="nav-link" activeClassName="active" to="/app/charts">
+      <NavLink className="nav-link" activeClassName="active" to="app/charts">
         Charts
       </NavLink>
     </li>
