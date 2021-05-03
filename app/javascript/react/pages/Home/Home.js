@@ -1,12 +1,28 @@
 import React, { useState } from "react";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
+import { useMutation, gql } from "@apollo/client";
+
+const ADD_DAILY_STATS_ALL_QUERY = gql`
+  mutation AddDailyStat($date: String!, $data: JSON!) {
+    addDailyStat(input: { date: $date, data: $data }) {
+      dailyStat {
+        id
+        date
+        data
+      }
+      errors
+    }
+  }
+`;
 
 const Home = () => {
   const [nameInput, setNameInput] = useState("");
   const [valueInput, setValueInput] = useState("");
   const [date, setDate] = useState(moment());
   const [focus, setFocus] = useState(false);
+
+  const [addDailyStat, { data }] = useMutation(ADD_DAILY_STATS_ALL_QUERY);
 
   const inputChangeHandler = (e) => {
     if (e.target.name === "question") {
@@ -19,7 +35,14 @@ const Home = () => {
   const addInputElementHandler = (e) => {
     e.preventDefault();
     if (nameInput || valueInput) {
-      // send item through graphql query
+      const data = {
+        [nameInput]: valueInput,
+      };
+      const selectedDate = date.toISOString();
+      console.log(selectedDate);
+      addDailyStat({
+        variables: { date: selectedDate, data: data },
+      });
       setNameInput("");
       setValueInput("");
     }
@@ -68,6 +91,7 @@ const Home = () => {
               type="submit"
               className="form-control btn btn-info"
               value="Add this to my list"
+              disabled={!valueInput || !nameInput}
             />
           </div>
         </div>
