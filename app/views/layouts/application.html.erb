@@ -12,6 +12,9 @@
 
   <body>
     <%= render partial: "layouts/navbar" %>
+    <div class="pre-container">
+      <%= yield :pre_container %>
+    </div>
     <main class="container-fluid">
       <%= render  "shared/flash_message" %>
       <%= content_for?(:content) ? yield(:content) : yield %>
