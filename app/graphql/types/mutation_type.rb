@@ -1,5 +1,5 @@
 module Types
   class MutationType < Types::BaseObject
-    field :add_daily_stat, mutation: Mutations::AddDailyStat
+    field :upsert_stat, mutation: Mutations::UpsertStat
   end
 end

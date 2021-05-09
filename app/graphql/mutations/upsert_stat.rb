@@ -1,5 +1,5 @@
 module Mutations
-  class AddDailyStat < BaseMutation
+  class UpsertStat < BaseMutation
     argument :date, String, required: true
     argument :data, GraphQL::Types::JSON, required: true
 
