@@ -31,12 +31,12 @@ const Stats = () => {
         </div>
       </li>
       {data.dailyStats.map((stat) => (
-        <li key="{stat.id}" className="list-group-item">
+        <li key={stat.id} className="list-group-item">
           <div className="row">
             <div className="col-md-2">{moment(stat.date).format("L")}</div>
             <div className="col-md-10">
               {Object.keys(stat.data).map((key) => (
-                <dl className="row">
+                <dl className="row" key={key}>
                   <dt className="col-4 text-right">{key}</dt>
                   <dd className="col-8">{stat.data[key]}</dd>
                 </dl>

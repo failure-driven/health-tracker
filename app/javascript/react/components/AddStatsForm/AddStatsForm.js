@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { gql, useQuery } from "@apollo/client";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
+import { changeObjectToArray } from "../../../utility/convertArrayAndObject";
+
+const DAILY_STAT_BY_DATE = gql`
+  query DailyStatByDate($date: String!) {
+    dailyStatByDate(date: $date) {
+      data
+    }
+  }
+`;
 
 const AddStatsForm = (props) => {
   const defaultForm = {
@@ -10,16 +20,24 @@ const AddStatsForm = (props) => {
 
   const [formInput, setFormInput] = useState([defaultForm]);
   const [emptyInputCheck, setEmptyInputCheck] = useState(true);
+  const date = props.date.toISOString();
+  const { loading, error, data } = useQuery(DAILY_STAT_BY_DATE, {
+    variables: { date },
+  });
 
   useEffect(() => {
-    const formInputLoaded = props.formInput;
-    if (formInputLoaded.length > 0) {
-      setFormInput(() => formInputLoaded);
+    if (data) {
+      const inputArr = changeObjectToArray(data.dailyStatByDate.data);
+      setFormInput(() => inputArr);
+      isDisabledHandler();
     }
-  }, []);
+    // const data = dailyStatByDate(props.date);
+    // console.log(JSON.stringify(data));
+  }, [data]);
 
   const isDisabledHandler = () => {
-    if (formInput.length < 0) return true;
+    // needs to fixed to disabled when input condition is not met
+    if (formInput.length <= 0) return true;
 
     const disable = formInput
       .map((input) => {
@@ -36,7 +54,6 @@ const AddStatsForm = (props) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(formInput);
     props.onSubmit(formInput);
   };
 
@@ -64,7 +81,7 @@ const AddStatsForm = (props) => {
             inputChangeHandler={(event) => inputChangeHandler(index, event)}
             formInput={input}
             addFormInput={addFormInput}
-            addDisabled={emptyInputCheck}
+            addDisabled={false}
             removeFormInput={removeFormInput}
           />
         ))}
@@ -74,7 +91,7 @@ const AddStatsForm = (props) => {
           <Button
             type="submit"
             className="form-control btn btn-info"
-            disabled={emptyInputCheck}
+            disabled={false}
           >
             Add this to my list
           </Button>

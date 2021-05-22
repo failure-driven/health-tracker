@@ -1,21 +1,17 @@
 const changeArrayToObject = (array) => {
   const obj = {};
   array.forEach(({ activity, answer }) => {
-    console.log(activity, answer);
-    obj = {
-      ...obj,
-      [activity]: answer,
-    };
+    obj[activity] = answer;
   });
   return obj;
 };
 
 const changeObjectToArray = (obj) => {
   const array = [];
-  Object.keys(obj).forEach((element) => {
+  Object.keys(obj).forEach((input) => {
     const newObj = {
-      activity: element,
-      answer: obj[element],
+      activity: input,
+      answer: obj[input],
     };
     array.push(newObj);
   });
