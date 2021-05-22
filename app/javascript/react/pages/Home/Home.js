@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import { useMutation, gql } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import AddStatsForm from "../../components/AddStatsForm/AddStatsForm";
 import { changeArrayToObject } from "../../../utility/convertArrayAndObject";
 
@@ -18,7 +19,8 @@ const UPSERT_STAT_QUERY = gql`
   }
 `;
 
-const Home = () => {
+const Home = (props) => {
+  let navigate = useNavigate();
   const [formInput, setFormInput] = useState([]);
   const [date, setDate] = useState(moment());
   const [focus, setFocus] = useState(false);
@@ -32,14 +34,12 @@ const Home = () => {
       date: date.toISOString(),
       data,
     };
-    //convert array to object
 
-    // submit to backend
+    upsertStat({
+      variables,
+    });
 
-    // upsertStat({
-    //   variables,
-    // });
-    console.log(variables);
+    navigate("/app/stats");
   };
   return (
     <div>
@@ -63,6 +63,7 @@ const Home = () => {
             />
           </div>
           <AddStatsForm
+            date={date}
             className="my-4"
             onSubmit={submitHandler}
             formInput={formInput}
