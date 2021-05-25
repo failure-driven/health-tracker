@@ -26,13 +26,11 @@ const AddStatsForm = (props) => {
   });
 
   useEffect(() => {
-    if (data) {
+    if (data && data.dailyStatByDate && data.dailyStatByDate.data) {
       const inputArr = changeObjectToArray(data.dailyStatByDate.data);
-      setFormInput(() => inputArr);
+      setFormInput(inputArr);
       isDisabledHandler();
     }
-    // const data = dailyStatByDate(props.date);
-    // console.log(JSON.stringify(data));
   }, [data]);
 
   const isDisabledHandler = () => {
@@ -44,12 +42,12 @@ const AddStatsForm = (props) => {
         return Object.values(input).includes("");
       })
       .includes(true);
-    setEmptyInputCheck(() => disable);
+    setEmptyInputCheck(disable);
   };
 
   const addFormInput = () => {
     const formInputCopy = [...formInput, defaultForm];
-    setFormInput(() => formInputCopy);
+    setFormInput(formInputCopy);
   };
 
   const onSubmitHandler = (e) => {
@@ -60,14 +58,14 @@ const AddStatsForm = (props) => {
   const removeFormInput = (index) => {
     const formInputCopy = [...formInput];
     formInputCopy.splice(index, 1);
-    setFormInput(() => formInputCopy);
+    setFormInput(formInputCopy);
     isDisabledHandler();
   };
 
   const inputChangeHandler = (index, e) => {
     const formInputCopy = [...formInput];
     formInputCopy[index][e.target.name] = e.target.value;
-    setFormInput(() => formInputCopy);
+    setFormInput(formInputCopy);
     isDisabledHandler();
   };
 
