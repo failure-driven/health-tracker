@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import TextField from "../TextField/TextField";
 
 const FormInput = (props) => (
-  <Fragment>
+  <>
     <div className="col-4 my-2">
       <TextField
         type="text"
@@ -45,7 +45,7 @@ const FormInput = (props) => (
         </div>
       </div>
     </div>
-  </Fragment>
+  </>
 );
 
 export default FormInput;
