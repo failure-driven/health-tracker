@@ -20,7 +20,7 @@ const UPSERT_STAT_QUERY = gql`
 `;
 
 const Home = (props) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [formInput, setFormInput] = useState([]);
   const [date, setDate] = useState(moment());
   const [focus, setFocus] = useState(false);
@@ -52,7 +52,7 @@ const Home = (props) => {
         {display ? "hide stats" : "add stats for today"}
       </button>
       {display && (
-        <Fragment>
+        <>
           <div className="my-4">
             <SingleDatePicker
               date={date}
@@ -68,7 +68,7 @@ const Home = (props) => {
             onSubmit={submitHandler}
             formInput={formInput}
           />
-        </Fragment>
+        </>
       )}
     </div>
   );
