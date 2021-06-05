@@ -1,51 +1,69 @@
-import React, { Fragment } from "react";
-import Button from "../Button/Button";
+import React from "react";
+import PropTypes from "prop-types";
 import TextField from "../TextField/TextField";
 
-const FormInput = (props) => (
+const FormInput = ({
+  formInput,
+  inputChangeHandler,
+  addFormInput,
+  removeFormInput,
+  addDisabled,
+  index,
+}) => (
   <>
     <div className="col-4 my-2">
       <TextField
         type="text"
         name="activity"
-        value={props.formInput.activity || ""}
+        value={formInput.activity || ""}
         className="form-control"
         placeholder="What did you do?"
-        inputChangeHandler={props.inputChangeHandler}
+        inputChangeHandler={inputChangeHandler}
       />
     </div>
     <div className="col-4 my-2">
       <TextField
         type="text"
         name="answer"
-        value={props.formInput.answer || ""}
+        value={formInput.answer || ""}
         className="form-control"
         placeholder="How much?"
-        inputChangeHandler={props.inputChangeHandler}
+        inputChangeHandler={inputChangeHandler}
       />
     </div>
     <div className="col-4 my-2">
       <div className="row">
         <div className="col-6">
-          <Button
-            click={props.addFormInput}
+          <button
+            type="button"
+            click={addFormInput}
             className="btn btn-success"
-            disabled={props.addDisabled}
+            disabled={addDisabled}
           >
             Add
-          </Button>
+          </button>
         </div>
         <div className="col-6">
-          <Button
-            click={() => props.removeFormInput(props.index)}
+          <button
+            type="button"
+            click={() => removeFormInput(index)}
             className="btn btn-danger"
           >
             Remove
-          </Button>
+          </button>
         </div>
       </div>
     </div>
   </>
 );
+
+FormInput.propTypes = {
+  formInput: PropTypes.func.isRequired,
+  inputChangeHandler: PropTypes.func.isRequired,
+  addFormInput: PropTypes.func.isRequired,
+  removeFormInput: PropTypes.func.isRequired,
+  addDisabled: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 export default FormInput;
