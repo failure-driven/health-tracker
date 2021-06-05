@@ -19,14 +19,14 @@ const UPSERT_STAT_QUERY = gql`
   }
 `;
 
-const Home = (props) => {
+const Home = () => {
   const navigate = useNavigate();
-  const [formInput, setFormInput] = useState([]);
   const [date, setDate] = useState(moment());
   const [focus, setFocus] = useState(false);
   const [display, setDisplay] = useState(false);
 
-  const [upsertStat, { data }] = useMutation(UPSERT_STAT_QUERY);
+  const formInput = [];
+  const [upsertStat] = useMutation(UPSERT_STAT_QUERY);
 
   const submitHandler = (input) => {
     const data = changeArrayToObject(input);
@@ -55,7 +55,7 @@ const Home = (props) => {
         <>
           <div className="my-4">
             <SingleDatePicker
-              date={date}
+              date={date.toISOString}
               onDateChange={(newDate) => setDate(newDate)}
               focused={focus}
               onFocusChange={({ focused }) => setFocus(focused)}
