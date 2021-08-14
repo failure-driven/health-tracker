@@ -1,13 +1,30 @@
 PROJECT := health-tracker
 
 default: usage
+
+install-tools:
+	bin/makefile/install-tools
+
+install: install-tools
+
 usage:
 	bin/makefile/usage
 
-rubocop_fix_all:
+check-tools:
+	bin/makefile/check-tools
+
+check: check-tools
+
+setup: check
+	bin/setup
+
+demo-data:
+	rails fake_data
+
+rubocop-fix-all:
 	bundle exec rubocop -A .
 
-prettier_ruby:
+prettier:
 	bin/makefile/prettier-ruby
 
 .PHONY: build

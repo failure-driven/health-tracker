@@ -8,50 +8,27 @@
 
 Health Tracker - track all the health
 
-# README
+# Setup
 
-This project is for tracking fitness goals
+use the make file to setup and run the tests
 
-# Installation
+```
+make
+make setup
+make build
+```
 
-## Clone project
+populate your database with some data
 
-You can clone the project using
+```
+make demo-data
+```
 
-`git clone https://github.com/failure-driven/health-tracker.git .`
+run the development server
 
-## System Requirements
+```
+rails server
+bin/webpack-dev-server
+open http://localhost:3000
+```
 
-* Ruby version **ruby-3.0.0**
-
-& Database **postgresql**
-
-## Install Project Dependencies
-
-Rails dependencies 
-
-`bundle install`
-
-JavaScript dependencies
-
-`yarn install`
-
-Initialise Database
-
-`rails db:create`
-
-Build project
-
-`make build`
-
-Migrate database
-
-`rails db:migrate`
-
-## Run file in the browser (development)
-
-Start rails server
-
-`rails s`
-
-(localhost)[http://127.0.0.1:3000]
