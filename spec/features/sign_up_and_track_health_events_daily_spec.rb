@@ -18,7 +18,7 @@ feature "Sign up and track health events daily", js: true do
       wait_for do
         page.find("p.alert [data-testid=\"message\"]").text
       end.to eq "A message with a confirmation link has been sent to your email address. " \
-        "Please follow the link to activate your account."
+                "Please follow the link to activate your account."
     end
 
     When "Whitney attempts to signs in" do
@@ -87,7 +87,7 @@ feature "Sign up and track health events daily", js: true do
     And "She goes to add some health stats for today"
     And "She clicks add"
     Then "she sees she has an option to add any stat from previous days: "\
-          "[weight, pushup count, pushup type, notes]"
+         "[weight, pushup count, pushup type, notes]"
     When "she adds more pushups"
     Then "she is shown she her pushups, and a trend line"
     And "she is also asked to confirm her previous day"
