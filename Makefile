@@ -15,7 +15,7 @@ check-tools:
 
 check: check-tools
 
-setup: check
+setup: # check already does a check tools in bin/setup
 	bin/setup
 
 demo-data:

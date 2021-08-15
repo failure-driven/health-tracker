@@ -20,6 +20,7 @@ check_expected_version() {
 
 check_expected_version nodejs "$(node -v)"
 check_expected_version ruby "$(ruby -v)"
+check_expected_version yarn "$(yarn -v)"
 
 echo -e "${GREEN}"all your tools look fine 🎉 "${NC}\n"
 
