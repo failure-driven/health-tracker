@@ -23,7 +23,7 @@ const FormInput = ({
     </div>
     <div className="col-4 my-2">
       <TextField
-        type="text"
+        type="number"
         name="answer"
         value={formInput.answer || ""}
         className="form-control"
@@ -36,7 +36,7 @@ const FormInput = ({
         <div className="col-6">
           <button
             type="button"
-            click={addFormInput}
+            onClick={addFormInput}
             className="btn btn-success"
             disabled={addDisabled}
           >
@@ -46,7 +46,7 @@ const FormInput = ({
         <div className="col-6">
           <button
             type="button"
-            click={() => removeFormInput(index)}
+            onClick={() => removeFormInput(index)}
             className="btn btn-danger"
           >
             Remove
@@ -58,7 +58,7 @@ const FormInput = ({
 );
 
 FormInput.propTypes = {
-  formInput: PropTypes.func.isRequired,
+  formInput: PropTypes.object.isRequired,
   inputChangeHandler: PropTypes.func.isRequired,
   addFormInput: PropTypes.func.isRequired,
   removeFormInput: PropTypes.func.isRequired,
