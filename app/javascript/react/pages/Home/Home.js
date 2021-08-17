@@ -55,7 +55,7 @@ const Home = () => {
         <>
           <div className="my-4">
             <SingleDatePicker
-              date={date.toISOString}
+              date={date}
               onDateChange={(newDate) => setDate(newDate)}
               focused={focus}
               onFocusChange={({ focused }) => setFocus(focused)}
@@ -63,7 +63,7 @@ const Home = () => {
             />
           </div>
           <AddStatsForm
-            date={date}
+            date={date.toISOString()}
             className="my-4"
             onSubmit={submitHandler}
             formInput={formInput}
