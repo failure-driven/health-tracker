@@ -58,7 +58,7 @@ const AddStatsForm = ({ date, onSubmit }) => {
       <div className="row">
         {formInput.map((input, index) => (
           <FormInput
-            key={uuid()}
+            key={index}
             index={index}
             inputChangeHandler={(event) => inputChangeHandler(index, event)}
             formInput={input}
