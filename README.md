@@ -13,6 +13,7 @@ Health Tracker - track all the health
 use the make file to setup and run the tests
 
 ```
+brew bundle
 make
 make setup
 make build
