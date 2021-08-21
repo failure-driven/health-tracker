@@ -1,2 +1,2 @@
-brew 'ag'
-cask 'google-chrome'
+brew "ag"
+cask "google-chrome"
