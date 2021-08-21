@@ -28,9 +28,10 @@ feature "User adds stats using nice UI", js: true do
       When "Claudia signs in and views her stats in admin" do
         visit root_path
         page.find("nav a", text: "Log in").click
-        page.find("form.new_user").fill_in("Email", with: "claudia.king@automio.com")
-        page.find("form.new_user").fill_in("Password", with: "1password")
-        page.find("form.new_user").find('input[type="submit"]').click
+        focus_on(:form).for(user_session_path).submit(
+          "Email" => "claudia.king@automio.com",
+          "Password" => "1password",
+        )
         # expect(
         #   page.find("p.alert [data-testid=\"message\"]").text
         # ).to eq "Signed in successfully."

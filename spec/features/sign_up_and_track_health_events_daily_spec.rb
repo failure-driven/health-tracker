@@ -8,10 +8,11 @@ feature "Sign up and track health events daily", js: true do
     end
 
     And "she registers" do
-      page.find("form.new_user").fill_in("Email", with: "whitney.wolfe@bumble.com")
-      page.find("form.new_user").fill_in("Password", with: "1password")
-      page.find("form.new_user").fill_in("Password confirmation", with: "1password")
-      page.find("form.new_user").find('input[type="submit"]').click
+      focus_on(:form).for(user_registration_path).submit(
+        "Email" => "whitney.wolfe@bumble.com",
+        "Password" => "1password",
+        "Password confirmation" => "1password",
+      )
     end
 
     Then "she sees a notification that she needs to sign up before continuing" do
@@ -23,9 +24,10 @@ feature "Sign up and track health events daily", js: true do
 
     When "Whitney attempts to signs in" do
       page.find("nav a", text: "Log in").click
-      page.find("form.new_user").fill_in("Email", with: "whitney.wolfe@bumble.com")
-      page.find("form.new_user").fill_in("Password", with: "1password")
-      page.find("form.new_user").find('input[type="submit"]').click
+      focus_on(:form).for(user_session_path).submit(
+        "Email" => "whitney.wolfe@bumble.com",
+        "Password" => "1password",
+      )
     end
 
     Then "she sees a notification that she needs to confirm her email before continuing" do
@@ -50,9 +52,10 @@ feature "Sign up and track health events daily", js: true do
     end
 
     When "she signs in again" do
-      page.find("form.new_user").fill_in("Email", with: "whitney.wolfe@bumble.com")
-      page.find("form.new_user").fill_in("Password", with: "1password")
-      page.find("form.new_user").find('input[type="submit"]').click
+      focus_on(:form).for(user_session_path).submit(
+        "Email" => "whitney.wolfe@bumble.com",
+        "Password" => "1password",
+      )
     end
 
     Then "she sees a notification that she has signed in successfully" do
@@ -128,9 +131,10 @@ feature "Sign up and track health events daily", js: true do
       When "Claudia logs in and views admin" do
         visit root_path
         page.find("nav a", text: "Log in").click
-        page.find("form.new_user").fill_in("Email", with: "claudia.king@automio.com")
-        page.find("form.new_user").fill_in("Password", with: "1password")
-        page.find("form.new_user").find('input[type="submit"]').click
+        focus_on(:form).for(user_session_path).submit(
+          "Email" => "claudia.king@automio.com",
+          "Password" => "1password",
+        )
         page.find("nav a", text: "admin").click
       end
 
@@ -209,9 +213,10 @@ feature "Sign up and track health events daily", js: true do
 
       When "Ilana logs in and visits admin" do
         page.find("nav a", text: "Log in").click
-        page.find("form.new_user").fill_in("Email", with: "ilana.feain@nano-x.com")
-        page.find("form.new_user").fill_in("Password", with: "1password")
-        page.find("form.new_user").find('input[type="submit"]').click
+        focus_on(:form).for(user_session_path).submit(
+          "Email" => "ilana.feain@nano-x.com",
+          "Password" => "1password",
+        )
         page.find("nav a", text: "admin").click
       end
 
