@@ -1,7 +1,7 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { gql, useQuery } from "@apollo/client";
-import uuid from "react-uuid";
 import FormInput from "../FormInput/FormInput";
 import { changeObjectToArray } from "../../../utility/convertArrayAndObject";
 

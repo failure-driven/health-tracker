@@ -63,7 +63,6 @@ feature "User adds stats using nice UI", js: true do
       Then "she sees the new stat visible as well" do
         page.find("nav a", text: "admin").click
         page.find("nav.navigation a", text: "Daily Stats").click
-        pending "the React UI saving numeric data not string"
         expect(
           page
             .find_all("table tr td")
