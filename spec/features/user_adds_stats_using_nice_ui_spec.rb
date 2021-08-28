@@ -1,27 +1,11 @@
 require "rails_helper"
 
 feature "User adds stats using nice UI", js: true do
-  context "A user existst with stats" do
+  context "A user exists with stats" do
     before do
-      @user_claudia = User.create!(
-        email: "claudia.king@automio.com",
-        password: "1password",
-        confirmed_at: DateTime.now,
-      )
-      @user_claudia.daily_stats.create!(
-        date: Date.parse("2015-04-01"),
-        data: {
-          weight: 66.6,
-          situps: 100,
-        },
-      )
-      @user_claudia.daily_stats.create!(
-        date: Date.parse("2015-04-02"),
-        data: {
-          weight: 66.6,
-          situps: 80,
-        },
-      )
+      @user_claudia = create(:user_claudia)
+      @user_claudia.daily_stats.append(create(:daily_stat, date: Date.parse("2015-04-01"), data: { situps: 100, weight: 66.6 }, user: @user_claudia))
+      @user_claudia.daily_stats.append(create(:daily_stat, date: Date.parse("2015-04-02"), data: { situps: 80, weight: 66.6 }, user: @user_claudia))
     end
 
     scenario "Claudia signs in, sees her stats and updates them" do
