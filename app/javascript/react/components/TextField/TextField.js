@@ -22,7 +22,10 @@ const TextField = ({
 TextField.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]).isRequired,
   className: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   inputChangeHandler: PropTypes.func.isRequired,

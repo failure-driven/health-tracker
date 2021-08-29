@@ -1,8 +1,10 @@
 const changeArrayToObject = (array) => {
   const obj = {};
-  array.forEach(({ activity, answer }) => {
-    obj[activity] = answer;
-  });
+  array
+    .filter((item) => item.activity !== "" || item.answer !== "")
+    .forEach(({ activity, answer }) => {
+      obj[activity] = parseFloat(answer, 10);
+    });
   return obj;
 };
 

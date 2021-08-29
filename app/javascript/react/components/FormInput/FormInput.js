@@ -58,7 +58,10 @@ const FormInput = ({
 );
 
 FormInput.propTypes = {
-  formInput: PropTypes.object.isRequired,
+  formInput: PropTypes.shape({
+    activity: PropTypes.string,
+    answer: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
   inputChangeHandler: PropTypes.func.isRequired,
   addFormInput: PropTypes.func.isRequired,
   removeFormInput: PropTypes.func.isRequired,
