@@ -101,7 +101,7 @@ feature "Sign up and track health events daily", js: true do
     Then "she is informed the photo will be used to train an AI to work out how healthy she is looking"
   end
 
-  context "2 users exist and they use the admin interface to enter data" do
+  context "when 2 users exist and they use the admin interface to enter data" do
     before do
       @user_claudia = User.create!(
         email: "claudia.king@automio.com",
@@ -110,8 +110,8 @@ feature "Sign up and track health events daily", js: true do
       @user_claudia.confirm
       @user_claudia.daily_stats.create!(
         date: Date.parse("2015-04-01"),
-        data: { notes: "founded a company",
-                situps: 100, },
+        data: {notes: "founded a company",
+               situps: 100,},
       )
       @user_claudia.daily_stats.create!(
         date: Date.parse("2015-04-02"),
@@ -142,8 +142,8 @@ feature "Sign up and track health events daily", js: true do
         # TODO: move to page fragment
         headers = page.find_all("table thead tr th").map(&:text)
         fields_per_row = page
-                         .find_all("table tbody tr")
-                         .map do |row|
+          .find_all("table tbody tr")
+          .map do |row|
           headers.zip(row.find_all("td").map(&:text)).to_h
         end
         expect(
@@ -156,8 +156,8 @@ feature "Sign up and track health events daily", js: true do
         # TODO: move to page fragment
         headers = page.find_all("table thead tr th").map(&:text)
         fields_per_row = page
-                         .find_all("table tbody tr")
-                         .map do |row|
+          .find_all("table tbody tr")
+          .map do |row|
           headers.zip(row.find_all("td").map(&:text)).to_h
         end
         expect(
@@ -168,7 +168,7 @@ feature "Sign up and track health events daily", js: true do
       When "she changes her daily stats for 2nd of April" do
         page
           .find_all("table tbody tr")
-          .find { |row| row.text =~ /2015-04-02/ }
+          .find { |row| row.text.include?("2015-04-02") }
           .click
         page.find("header a", text: "Edit DailyStat").click
         # TODO: would not really change the date but more the json data
@@ -184,20 +184,20 @@ feature "Sign up and track health events daily", js: true do
       Then "they change" do
         # TODO: simplify in page fragment
         keys = page
-               .find("section.main-content__body")
-               .find_all("dt")
-               .map(&:text)
+          .find("section.main-content__body")
+          .find_all("dt")
+          .map(&:text)
         values = page
-                 .find("section.main-content__body")
-                 .find_all("dd")
-                 .map(&:text)
+          .find("section.main-content__body")
+          .find_all("dd")
+          .map(&:text)
         wait_for do
           keys.zip(values).to_h
         end.to match(hash_including(
-                       "USER" => "User #claudia.king@automio.com",
-                       "DATE" => "2015-04-10",
-                       "DATA" => "object\n{2}\nnotes\n:\nday 2 of company\nsitups\n:\n120",
-                     ))
+          "USER" => "User #claudia.king@automio.com",
+          "DATE" => "2015-04-10",
+          "DATA" => "object\n{2}\nnotes\n:\nday 2 of company\nsitups\n:\n120",
+        ))
       end
 
       When "she navigates back to the app and logs out" do
@@ -224,8 +224,8 @@ feature "Sign up and track health events daily", js: true do
         # TODO: move to page fragment
         headers = page.find_all("table thead tr th").map(&:text)
         fields_per_row = page
-                         .find_all("table tbody tr")
-                         .map do |row|
+          .find_all("table tbody tr")
+          .map do |row|
           headers.zip(row.find_all("td").map(&:text)).to_h
         end
         expect(
@@ -238,8 +238,8 @@ feature "Sign up and track health events daily", js: true do
         # TODO: move to page fragment
         headers = page.find_all("table thead tr th").map(&:text)
         fields_per_row = page
-                         .find_all("table tbody tr")
-                         .map do |row|
+          .find_all("table tbody tr")
+          .map do |row|
           headers.zip(row.find_all("td").map(&:text)).to_h
         end
         expect(

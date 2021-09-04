@@ -12,9 +12,10 @@ class GraphqlController < ApplicationController
     context = {
       current_user: current_user,
     }
-    result = HealthTrackerSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = HealthTrackerSchema.execute(query, variables: variables, context: context,
+operation_name: operation_name,)
     render json: result
-  rescue StandardError => e
+  rescue => e
     raise e unless Rails.env.development?
 
     handle_error_in_development e
@@ -46,6 +47,7 @@ class GraphqlController < ApplicationController
     logger.error error.message
     logger.error error.backtrace.join("\n")
 
-    render json: { errors: [{ message: error.message, backtrace: error.backtrace }], data: {} }, status: 500
+    render json: {errors: [{message: error.message, backtrace: error.backtrace}], data: {}},
+      status: :internal_server_error
   end
 end

@@ -1,11 +1,29 @@
 require "rails_helper"
 
 feature "User adds stats using nice UI", js: true do
-  context "A user exists with stats" do
+  context "when a user existst with stats" do
     before do
       @user_claudia = create(:user_claudia)
-      @user_claudia.daily_stats.append(create(:daily_stat, date: Date.parse("2015-04-01"), data: { situps: 100, weight: 66.6 }, user: @user_claudia))
-      @user_claudia.daily_stats.append(create(:daily_stat, date: Date.parse("2015-04-02"), data: { situps: 80, weight: 66.6 }, user: @user_claudia))
+      @user_claudia
+        .daily_stats
+        .append(
+          create(
+            :daily_stat,
+            date: Date.parse("2015-04-01"),
+            data: {situps: 100, weight: 66.6},
+            user: @user_claudia,
+          ),
+        )
+      @user_claudia
+        .daily_stats
+        .append(
+          create(
+            :daily_stat,
+            date: Date.parse("2015-04-02"),
+            data: {situps: 80, weight: 66.6},
+            user: @user_claudia,
+          ),
+        )
     end
 
     scenario "Claudia signs in, sees her stats and updates them" do
@@ -30,9 +48,9 @@ feature "User adds stats using nice UI", js: true do
             .filter { |td| td["class"] =~ /(--date|--jsonb)/ }
             .map(&:text),
         ).to eq([
-                  "2015-04-01", "{ \"situps\": 100, \"weight\": 66.6 }",
-                  "2015-04-02", "{ \"situps\": 80, \"weight\": 66.6 }",
-                ])
+          "2015-04-01", "{ \"situps\": 100, \"weight\": 66.6 }",
+          "2015-04-02", "{ \"situps\": 80, \"weight\": 66.6 }",
+        ])
       end
 
       When "she uses the slick UI to add another stat" do
@@ -53,10 +71,10 @@ feature "User adds stats using nice UI", js: true do
             .filter { |td| td["class"] =~ /(--date|--jsonb)/ }
             .map(&:text),
         ).to match([
-                     "2015-04-01", "{ \"situps\": 100, \"weight\": 66.6 }",
-                     "2015-04-02", "{ \"situps\": 80, \"weight\": 66.6 }",
-                     match(/.*/), "{ \"chinups\": 20 }",
-                   ])
+          "2015-04-01", "{ \"situps\": 100, \"weight\": 66.6 }",
+          "2015-04-02", "{ \"situps\": 80, \"weight\": 66.6 }",
+          match(/.*/), "{ \"chinups\": 20 }",
+        ])
       end
     end
   end

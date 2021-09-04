@@ -43,11 +43,6 @@ gem "administrate-field-jsonb"
 gem "graphiql-rails", group: :development
 gem "graphql"
 
-# Adding for consistent Ruby styling
-gem "rubocop"
-gem "rubocop-rails"
-gem "rubocop-rspec"
-
 group :test do
   gem "database_cleaner"
 
@@ -79,9 +74,16 @@ group :development, :test do
 
   # dev and test to be able to call binding.pry in specs
   gem "pry-byebug"
-  #
+
   # allow viewing emails in development
   gem "letter_opener"
+
+  # Adding for consistent Ruby styling
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rake", require: false
+  gem "rubocop-rspec", require: false
 end
 
 group :development do

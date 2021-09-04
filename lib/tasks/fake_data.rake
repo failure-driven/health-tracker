@@ -9,7 +9,7 @@ def create_or_update(model_class, attributes)
 end
 
 desc "fake data"
-task fake_data: :environment do
+task fake_data: :environment do # rubocop:disable Metrics/BlockLength
   include Rails.application.routes.url_helpers
 
   [
@@ -17,7 +17,7 @@ task fake_data: :environment do
       email: "akash@health-tracker.com",
       daily_stats: lambda { |user|
                      user.daily_stats.delete_all
-                     ((Date.today - 1.year)..Date.today).each do |date|
+                     ((Time.zone.today - 1.year)..Time.zone.today).each do |date|
                        user.daily_stats.create(
                          date: date,
                          data: {
@@ -33,7 +33,7 @@ task fake_data: :environment do
       email: "michael@health-tracker.com",
       daily_stats: lambda { |user|
                      user.daily_stats.delete_all
-                     ((Date.today - 1.year)..Date.today).each do |date|
+                     ((Time.zone.today - 1.year)..Time.zone.today).each do |date|
                        data = {}
                        data["weight (kg)"] = rand(100..119) if rand(100) > 60
                        data["pushups (count)"] = rand(100..119) if rand(100) > 20
