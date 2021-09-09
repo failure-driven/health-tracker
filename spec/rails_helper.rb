@@ -75,4 +75,7 @@ RSpec.configure do |config|
   # predictable host and port for email links
   Capybara.server_port = 3001
   Capybara.server_host = "localhost"
+
+  # file helper can create temporary files with given content
+  config.include FileHelper
 end
