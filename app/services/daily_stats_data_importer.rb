@@ -14,7 +14,7 @@ class DailyStatsDataImporter
       data = {
         row["Activity Name"] => row["Quantity"],
       }
-      daily_stats_data[date].present? ? daily_stats_data[date].merge(data) : daily_stats_data[date] = data
+      daily_stats_data[date].present? ? daily_stats_data[date] = daily_stats_data[date].merge(data) : daily_stats_data[date] = data
     end
 
     daily_stats = []
