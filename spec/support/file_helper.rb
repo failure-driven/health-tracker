@@ -1,5 +1,5 @@
 module FileHelper
-  def generate_file_with_contents(filename)
+  def generate_file_with_contents(*filename)
     file = Tempfile.new(filename)
     content = yield
     content = csv_lines_to_string(content) if content.is_a?(Array)

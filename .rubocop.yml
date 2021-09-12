@@ -35,6 +35,7 @@ Metrics/BlockLength:
   Description: allow features to be more descriptive and longer
   Exclude:
     - "spec/features/**/*"
+    - "spec/services/**/*"
 
 RSpec/Capybara/FeatureMethods:
   Description: allow given/background/scenario in capybara features

@@ -1,57 +1,63 @@
 require "csv"
 
 class DailyStatsDataImporter
-  attr_accessor :file_path
-
-  def initialize(file_path)
-    @file_path = file_path
+  def self.import(filepath, user_id)
+    new.import(filepath, user_id)
   end
 
-  def import_daily_stats(user_id)
-    daily_stats_data = {}
-    CSV.foreach(file_path, headers: true) do |row|
-      date = Date.parse(row["Date"])
-      data = {
-        row["Activity Name"] => row["Quantity"],
+  def import(filepath, user_id)
+    user = User.find(user_id)
+    read_file(filepath)
+      .map { |data| process_data(data) }
+      .map { |data| user.daily_stats.create(data) }
+  end
+
+  private
+
+  def read_file(filepath)
+    case File.extname(filepath)
+    when ".csv"
+      read_csv(filepath)
+    else
+      raise "Unknown file type"
+    end
+  end
+
+  def read_csv(filepath)
+    results = []
+    CSV.foreach(filepath, headers: true) do |row|
+      row_data = {
+        date: row["Date"],
+        data: {
+          row["Activity Name"] => row["Quantity"],
+        },
       }
-      daily_stats_data[date].present? ? daily_stats_data[date] = daily_stats_data[date].merge(data) : daily_stats_data[date] = data
-    end
-
-    daily_stats = []
-    invalid_daily_stats = []
-    daily_stats_data.each do |date, data|
-      daily_stat = DailyStat.new(date: date, data: data, user_id: user_id)
-      if daily_stat.valid?
-        daily_stats << daily_stat
+      same_date_item = results.find do |item|
+        item[:date] == row_data[:date]
+      end
+      if same_date_item.present?
+        same_date_item[:data] = same_date_item[:data].merge(row_data[:data])
       else
-        invalid_daily_stats << [daily_stat.date, daily_stat.data, daily_stat.errors.full_messages]
+        results << row_data
       end
     end
-
-    begin
-      DailyStat.transaction do
-        daily_stats.each do |daily_stat|
-          daily_stat.save
-        end
-      end
-    rescue ActiveRecord::ActiveRecordError => e
-      # TODO: what do we do with these errors? Records are valid, but something went wrong
-      puts e.to_json
-    end
-    # binding.pry
-    generate_csv(invalid_daily_stats, "Date", "Data", "Error")
+    results
   end
 
-  # TODO: a method to handle errors and output them in a csv
-  def generate_csv(data, *headers)
-    CSV.generate(
-      write_headers: true,
-      headers: headers,
-    ) do |csv|
-      data.each do |data|
-        csv << data
-      end
-    end
+  def process_data(data)
+    parse_date(data)
+      .then { |new_data| parse_values(new_data) }
   end
 
+  def parse_date(data)
+    data[:date] = Date.parse(data[:date])
+    data
+  end
+
+  def parse_values(data)
+    data[:data].each do |key, value|
+      data[:data][key] = value.to_f
+    end
+    data
+  end
 end
