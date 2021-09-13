@@ -19,7 +19,7 @@ const Stats = () => {
   if (error) return <p>{`Error! ${error.message}`}</p>;
 
   return (
-    <ul className="list-group">
+    <ul className="list-group daily-stats-list">
       <li className="list-group-item">
         <div className="row">
           <div className="col-md-2">
@@ -31,7 +31,7 @@ const Stats = () => {
         </div>
       </li>
       {data.dailyStats.map((stat) => (
-        <li key={stat.id} className="list-group-item">
+        <li key={stat.id} className="list-group-item daily-stats-item">
           <div className="row">
             <div className="col-md-2">{moment(stat.date).format("L")}</div>
             <div className="col-md-10">

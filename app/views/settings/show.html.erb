@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-12">
+    <%= form_with(url: import_path, multipart: true) do |form| %>
+      <%= form.file_field :file, {accept: ".csv"} %>
+      <%= form.button "Upload Stats", {class: "btn btn-info"} %>
+    <% end %>
+  </div>
+</div>

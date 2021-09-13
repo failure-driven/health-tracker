@@ -44,32 +44,36 @@ const Home = () => {
   return (
     <div>
       <h1 className="my-4">Are you sweating enough?</h1>
-      <button
-        type="button"
-        className={`btn btn-${display ? "danger" : "success"}`}
-        onClick={() => setDisplay((prev) => !prev)}
-      >
-        {display ? "hide stats" : "add stats for today"}
-      </button>
-      {display && (
-        <>
-          <div className="my-4">
-            <SingleDatePicker
-              date={date}
-              onDateChange={(newDate) => setDate(newDate)}
-              focused={focus}
-              onFocusChange={({ focused }) => setFocus(focused)}
-              id="date"
-            />
-          </div>
-          <AddStatsForm
-            date={date.toISOString()}
-            className="my-4"
-            onSubmit={submitHandler}
-            formInput={formInput}
-          />
-        </>
-      )}
+      <div className="row">
+        <div className="col-12">
+          <button
+            type="button"
+            className={`btn btn-${display ? "danger" : "success"}`}
+            onClick={() => setDisplay((prev) => !prev)}
+          >
+            {display ? "hide stats" : "add stats for today"}
+          </button>
+          {display && (
+            <>
+              <div className="my-4">
+                <SingleDatePicker
+                  date={date}
+                  onDateChange={(newDate) => setDate(newDate)}
+                  focused={focus}
+                  onFocusChange={({ focused }) => setFocus(focused)}
+                  id="date"
+                />
+              </div>
+              <AddStatsForm
+                date={date.toISOString()}
+                className="my-4"
+                onSubmit={submitHandler}
+                formInput={formInput}
+              />
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
