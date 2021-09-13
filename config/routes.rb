@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql" if Rails.env.development?
+  resource :settings, only: [:show]
+  post :import, to: "settings#import"
   post "/graphql", to: "graphql#execute"
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

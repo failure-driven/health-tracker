@@ -24,6 +24,11 @@ const Nav = () => (
     <li className="nav-item">
       <span className="nav-link disabled">Ranking</span>
     </li>
+    <li className="nav-item">
+      <a href="/settings" className="nav-link">
+        Settings
+      </a>
+    </li>
   </ul>
 );
 

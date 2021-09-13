@@ -71,23 +71,7 @@ const Home = () => {
                 formInput={formInput}
               />
             </>
-        )}
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12">
-          <input 
-            type="file" 
-            accept=".csv"
-            name="CSV-file-upload"
-          >
-          </input>
-          <button
-            type="button"
-            className={'btn btn-info'}
-           >
-           Upload Stats
-          </button>
+          )}
         </div>
       </div>
     </div>

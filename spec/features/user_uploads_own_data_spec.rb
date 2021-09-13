@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User uploads his data using nice UI", js: true do
+feature "User uploads their data using rails UI", js: true do
   context "with a user that has no stats" do
     before do
       @user_claudia = User.create!(
@@ -30,9 +30,9 @@ feature "User uploads his data using nice UI", js: true do
         ).to be(0)
       end
 
-      When "she uses the slick UI to upload a csv of stats" do
-        page.find("[data-widget-type='stats-app'] .nav-tabs a[href='/app']", text: "Add").click
-        import_file = generate_file_with_contents("health_sample.csv") do
+      When "she uses the Rails UI to upload a csv of stats" do
+        page.find("[data-widget-type='stats-app'] .nav-tabs a[href='/settings']", text: "Settings").click
+        import_file = generate_file_with_contents("health_sample", ".csv") do
           <<~HEALTH_SAMPLE_CSV
             Date,Activity Name,Quantity
             15/08/2021,Weight,67.1
@@ -47,15 +47,8 @@ feature "User uploads his data using nice UI", js: true do
             08/08/2021,Push ups,100
           HEALTH_SAMPLE_CSV
         end
-        attach_file("CSV-file-upload", import_file.path)
+        attach_file("file", import_file.path)
         page.find("button", text: "Upload Stats").click
-      end
-
-      Then "she sees a notification that the upload is being processed" do
-        pending "a way of actually processing the file"
-        wait_for do
-          page.find("p.alert [data-testid=\"message\"]").text
-        end.to eq "Processing..."
       end
 
       Then "she sees a notification that the upload is completed" do
@@ -71,7 +64,7 @@ feature "User uploads his data using nice UI", js: true do
           page
             .find_all(".daily-stats-list .daily-stats-item")
             .size,
-        ).to be(10)
+        ).to be(7)
       end
     end
   end
